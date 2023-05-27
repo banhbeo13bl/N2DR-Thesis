@@ -257,7 +257,7 @@ class App extends Component {
       var currency = new web3.eth.Contract(TOKENABI, erc20address);
       var mintRate = await contract.methods.getNFTCost(_pid).call();
       var _mintAmount = Number(outvalue);
-      var totalAmount = mintRate * _mintAmount;
+      var totalAmount = parseInt(mintRate * _mintAmount);
       await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
         Web3Alc.eth.getBlock('pending').then((block) => {
           var baseFee = Number(block.baseFeePerGas);
@@ -306,7 +306,7 @@ class App extends Component {
       <div className="App nftapp">
         <nav class="navbar navbarfont navbarglow navbar-expand-md navbar-dark bg-dark mb-4">
           <div class="container-fluid" style={{ fontFamily: "SF Pro Display" }}>
-            <a class="navbar-brand px-5" style={{ fontWeight: "800", fontSize: '25px' }} href="#"></a><img src="n2d-logo.png" width="7%" />
+            <a class="navbar-brand px-5" style={{ fontWeight: "800", fontSize: '25px' }} href="#"></a><img src="nd-logo.png" width="7%" />
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -365,7 +365,7 @@ class App extends Component {
                 <div className="row px-2 pb-2 row-style">
                   <div className="col ">
                     <Button className="button-style" onClick={mint0} style={{ border: "0.2px", borderRadius: "14px", boxShadow: "1px 1px 5px #000000" }}>
-                      <img src={"n2dr-logo.png"} width="100%" />
+                      <img src={"nd-logo.png"} width="100%" />
                     </Button>
                   </div>
                   <div className="col">
@@ -396,7 +396,7 @@ class App extends Component {
                       <Button onClick={verify} style={{ backgroundColor: "#ffffff10", boxShadow: "1px 1px 5px #000000" }} >Verify</Button>
                       <table className='table mt-3 mb-5 px-3 table-dark'>
                         <tr>
-                          <td style={{ fontSize: "19px" }}>Your Total NFTs:
+                          <td style={{ fontSize: "19px" }}>Your Staked NFTs Number:
                             <span style={{ backgroundColor: "#ffffff00", fontSize: "21px", color: "#39FF14", fontWeight: "500", textShadow: "1px 1px 2px #000000" }} id='yournfts'></span>
                           </td>
                         </tr>
@@ -434,34 +434,12 @@ class App extends Component {
                         <tr>
                           <th scope="col">Collection</th>
                           <th scope="col">Rewards Per Day</th>
-                          <th scope="col">Exchangeable Items</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>ND Bronze Collection</td>
-                          <td class="amount" data-test-id="rewards-summary-ads">
-                            <span class="amount">0.50</span>&nbsp;<span class="currency">NFTD</span>
-                          </td>
-                          <td class="exchange">
-                            <span class="amount">2</span>&nbsp;<span class="currency">NFTs/M</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>ND Silver Collection</td>
-                          <td class="amount" data-test-id="rewards-summary-ac">
-                            <span class="amount">2.50</span>&nbsp;<span class="currency">NFTD</span>
-                          </td>
-                          <td class="exchange"><span class="amount">10</span>&nbsp;<span class="currency">NFTs/M</span>
-                          </td>
-                        </tr>
                         <tr className='stakegoldeffect'>
-                          <td>ND Gold Collection</td>
-                          <td class="amount" data-test-id="rewards-summary-one-time"><span class="amount">1</span>&nbsp;<span class="currency">NFTD+</span>
-                          </td>
-                          <td class="exchange">
-                            <span class="amount">25 NFTs/M or </span>
-                            <span class="currency">100 NFTs/M</span>
+                          <td>ND Collection</td>
+                          <td class="amount" data-test-id="rewards-summary-one-time"><span class="amount">10</span>&nbsp;<span class="currency">NFTD/Day</span>
                           </td>
                         </tr>
                       </tbody>
